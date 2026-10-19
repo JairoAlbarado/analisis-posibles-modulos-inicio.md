@@ -15,9 +15,19 @@ const POKEMON_LIST = [
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredPokemon = POKEMON_LIST.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase().trim())
-  )
+  const filteredPokemon = POKEMON_LIST.filter((pokemon) => {
+    const cleanQuery = searchTerm.toLowerCase().trim().replace(/^#/, '')
+    if (!cleanQuery) return true
+
+    // Match by name
+    const matchesName = pokemon.name.toLowerCase().includes(cleanQuery)
+
+    // Match by ID (exact padded "001", exact raw number "1", or formatted "#001")
+    const rawNumber = parseInt(pokemon.id, 10).toString()
+    const matchesId = pokemon.id === cleanQuery || rawNumber === cleanQuery
+
+    return matchesName || matchesId
+  })
 
   return (
     <div className="pokedex-app">
@@ -26,7 +36,7 @@ function App() {
         <header className="pokedex-header">
           <div className="title-row">
             <svg className="pokeball-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4.06189 11H8.17071C8.58254 9.29127 10.1422 8 12 8C13.8578 8 15.4175 9.29127 15.8293 11H19.9381C19.446 6.94632 16.0826 3.8 12 3.8C7.9174 3.8 4.55404 6.94632 4.06189 11ZM12 16C10.1422 16 8.58254 14.7087 8.17071 13H4.06189C4.55404 17.0537 7.9174 20.2 12 20.2C16.0826 20.2 19.446 17.0537 19.9381 13H15.8293C15.4175 14.7087 13.8578 16 12 16ZM12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 10 10C10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" fill="white"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4.06189 11H8.17071C8.58254 9.29127 10.1422 8 12 8C13.8578 8 15.4175 9.29127 15.8293 11H19.9381C19.446 6.94632 16.0826 3.8 12 3.8C7.9174 3.8 4.55404 6.94632 4.06189 11ZM12 16C10.1422 16 8.58254 14.7087 8.17071 13H4.06189C4.55404 17.0537 7.9174 20.2 12 20.2C16.0826 20.2 19.446 17.0537 19.9381 13H15.8293C15.4175 14.7087 13.8578 16 12 16ZM12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 10 10C10 10.8954 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" fill="white"/>
             </svg>
             <h1 className="pokedex-title">Pokédex</h1>
           </div>

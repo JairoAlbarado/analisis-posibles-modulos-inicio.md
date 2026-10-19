@@ -39,3 +39,29 @@ Ejemplo:
     "spd": 45
   }
 }
+## 4. Alternativas
+
+* **Un solo JSON:** más sencillo de importar, pero reúne todos los registros en un archivo.
+* **Consultar una API durante el uso:** evita mantener datos locales, pero depende de la red y de la disponibilidad del servicio.
+* **JSON por generación (propuesta):** facilita mantener los datos por grupos, a cambio de tener que recopilarlos y verificarlos en el proyecto.
+
+Se elige la tercera opción porque la información requerida puede prepararse de antemano.
+
+## 5. Criterios de aceptación
+
+* Cada generación incluida tiene su propio archivo JSON y todos siguen la misma estructura.
+* Los identificadores del catálogo no se repiten y las rutas de imagen existen.
+* Corregir un registro no requiere modificar los componentes de `React`.
+* La aplicación puede usar los datos sin consultar una API externa durante su funcionamiento.
+
+## 6. Fuera de alcance y pendientes
+
+Este RFC no define backend, base de datos remota, movimientos ni relaciones evolutivas. Estos datos se diseñarán cuando se aborden esas funciones.
+
+Queda pendiente definir las generaciones incluidas, el juego de referencia para datos que varían entre versiones y las fuentes autorizadas para los datos y las imágenes.
+
+## 7. Riesgos
+
+* Datos incorrectos o campos diferentes entre generaciones pueden provocar errores al mostrar la información.
+* Separar los archivos no reduce por sí solo la carga inicial si todos se importan a la vez. La carga bajo demanda se evaluará si las mediciones de rendimiento la justifican.
+* Guardar imágenes localmente no concede derechos de uso; sus condiciones deben revisarse por separado.

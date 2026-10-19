@@ -48,4 +48,4 @@ Los parámetros que se mostrarán en la información general de cada Pokémon se
 
 Diseño de la página de inicio elaborado en Figma.
 
-![Diseño de la página de inicio de la Pokédex](images/pokedex-inicio.png)
+![Diseño de la página de inicio de la Pokédex](Imagenes/pagina-inicio.png)

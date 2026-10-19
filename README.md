@@ -43,3 +43,9 @@ Los parámetros que se mostrarán en la información general de cada Pokémon se
 ## Aspectos a investigar:
 
 * Como hacer que la información que recupere de `PokéAPI` lo pueda usar en mi página :v
+
+## Referencia visual
+
+Diseño de la página de inicio elaborado en Figma.
+
+![Diseño de la página de inicio de la Pokédex](images/pokedex-inicio.png)

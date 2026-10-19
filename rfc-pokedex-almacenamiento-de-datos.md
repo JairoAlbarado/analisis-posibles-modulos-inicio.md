@@ -38,7 +38,7 @@ Ejemplo:
     "sdef": 65,
     "spd": 45
   }
-}
+}}
 
 ## 4. Alternativas
 
